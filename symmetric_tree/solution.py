@@ -44,3 +44,16 @@ class Solution:
             q.put(t2.left)
 
         return True
+
+    # Recursive
+    def is_symmetric_2(self, root: TreeNode) -> bool:
+        def is_mirror(left: TreeNode, right: TreeNode):
+            if left is None and right is None:
+                return True
+
+            if left is None or right is None:
+                return False
+
+            return left.val == right.val and is_mirror(left.left, right.right) and is_mirror(left.right, right.left)
+
+        return is_mirror(root, root)
