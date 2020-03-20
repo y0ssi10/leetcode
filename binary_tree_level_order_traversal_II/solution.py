@@ -44,3 +44,28 @@ class Solution:
                 result.append(level_result)
 
         return result[::-1]
+
+    def level_order_bottom_2(self, root: TreeNode) -> List[List[int]]:
+        result = []
+
+        if not root:
+            return result
+
+        level_map = {}
+        def bfs(node: TreeNode, depth: int) -> None:
+            if depth not in level_map:
+                level_map[depth] = []
+
+            level_map[depth].append(node.val)
+            if node.left:
+                bfs(node.left, depth+1)
+            if node.right:
+                bfs(node.right, depth+1)
+
+        bfs(root, 1)
+
+        for key in level_map.keys():
+            val = level_map[key]
+            result.append(val)
+
+        return result[::-1]
