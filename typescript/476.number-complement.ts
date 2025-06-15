@@ -6,13 +6,13 @@
 
 // @lc code=start
 function findComplement(num: number): number {
-    let mask = 1;
-    while (mask <= num) {
-        mask <<= 1;
-    }
-    mask -= 1;
-    
+    let mask = num;
+    mask |= mask >> 1;
+    mask |= mask >> 2;
+    mask |= mask >> 4;
+    mask |= mask >> 8;
+    mask |= mask >> 16;
+        
     return num ^ mask;
-}
+};
 // @lc code=end
-
